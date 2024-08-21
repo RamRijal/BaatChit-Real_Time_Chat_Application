@@ -7,7 +7,6 @@ const app = express();
 app.get("/", (req, res) => {
   res.send("API IS RUNNING!");
 });
-
 app.get("/api/chats", (req, res) => {
   res.send(chats);
 });
