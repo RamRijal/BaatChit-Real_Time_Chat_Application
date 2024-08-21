@@ -68,6 +68,7 @@ const Register = () => {
                     First name
                   </FormLabel>
                   <Input
+                  width="full"
                     type="text"
                     name="first_name"
                     id="first_name"
@@ -147,6 +148,30 @@ const Register = () => {
                     name="email_address"
                     id="email_address"
                     autoComplete="email"
+                    mt={1}
+                    focusBorderColor="brand.400"
+                    shadow="sm"
+                    size="sm"
+                    w="full"
+                    rounded="md"
+                  />
+                </FormControl>
+                <FormControl as={GridItem} colSpan={[6, 6]}>
+                  <FormLabel
+                    htmlFor="picture"
+                    fontSize="sm"
+                    fontWeight="md"
+                    color="gray.700"
+                    _dark={{
+                      color: "gray.50",
+                    }}>
+                      Upload your picture
+                  </FormLabel>
+                  <Input
+                    type="file"
+                    name="picture"
+                    id="picture"
+                    autoComplete="picture"
                     mt={1}
                     focusBorderColor="brand.400"
                     shadow="sm"

@@ -1,60 +1,45 @@
 import {
-  Box, Button, FormControl,
+  Box,
+  Button,
+  FormControl,
   FormLabel,
   GridItem,
   Input,
   SimpleGrid,
-  Stack, chakra
+  Stack,
+  chakra,
 } from "@chakra-ui/react";
 import React from "react";
 
 const Login = () => {
   return (
-  
+    <Box mt={[10, 0]}>
       <SimpleGrid
-        display={{
-          base: "initial",
-          md: "grid",
-        }}
-        columns={{
-          md: 2,
-        }}
-        spacing={{
-          md: 0,
-        }}>
-        <GridItem
-          colSpan={{
-            md: 1,
-          }}></GridItem>
-        <GridItem
-          mt={[3, null, 0]}
-          colSpan={{
-            md: 2,
-          }}>
+        display={{ base: "initial", md: "grid" }}
+        columns={{ md: 2 }}
+        spacing={{ md: 2 }}>
+        <GridItem colSpan={{ md: 1 }}></GridItem>
+        <GridItem mt={[5, null, 0]} colSpan={{ md: 2 }}>
           <chakra.form
             method="POST"
             rounded={[null, "md"]}
-            overflow={{
-              sm: "hidden",
-            }}>
+            overflow={{ sm: "hidden" }}
+            >
             <Stack
-              p={[null, 3]}
+              px={4}
+              py={5}
+              p={[null, 6]}
               bg="white"
-              _dark={{
-                bg: "#141517",
-              }}
+              _dark={{ bg: "#141517" }}
               spacing={6}>
-              <SimpleGrid columns={6} spacing={20}>
-                
+              <SimpleGrid columns={6} spacing={6}>
                 <FormControl as={GridItem} colSpan={[6, 6]}>
                   <FormLabel
                     htmlFor="email_address"
                     fontSize="sm"
                     fontWeight="md"
                     color="gray.700"
-                    _dark={{
-                      color: "gray.50",
-                    }}>
+                    _dark={{ color: "gray.50" }}>
                     Email address
                   </FormLabel>
                   <Input
@@ -70,22 +55,21 @@ const Login = () => {
                     rounded="md"
                   />
                 </FormControl>
+
                 <FormControl as={GridItem} colSpan={[6, 6]}>
                   <FormLabel
-                    htmlFor="email_address"
+                    htmlFor="password"
                     fontSize="sm"
                     fontWeight="md"
                     color="gray.700"
-                    _dark={{
-                      color: "gray.50",
-                    }}>
-                    Password{" "}
+                    _dark={{ color: "gray.50" }}>
+                    Password
                   </FormLabel>
                   <Input
-                    type="text"
-                    name="email_address"
-                    id="email_address"
-                    autoComplete="email"
+                    type="password"
+                    name="password"
+                    id="password"
+                    autoComplete="current-password"
                     mt={1}
                     focusBorderColor="brand.400"
                     shadow="sm"
@@ -94,36 +78,39 @@ const Login = () => {
                     rounded="md"
                   />
                 </FormControl>
-             
+
+                
               </SimpleGrid>
             </Stack>
-           
+            <Box
+              px={{ base: 4, sm: 6 }}
+              py={3}
+              _dark={{ bg: "#121212" }}
+              textAlign="center">
               <Button
-              w={'full'}
+                w={"full"}
                 type="submit"
                 backgroundColor={"purple"}
                 color={"white"}
-                _focus={{
-                  shadow: "",
-                }}
+                _focus={{ shadow: "" }}
                 fontWeight="xl">
                 Login
               </Button>
               <Button
-              my="5px"
-              w={'full'}
-                type="submit"
+                my="5px"
+                w={"full"}
+                type="button"
                 backgroundColor={"green"}
                 color={"white"}
-                _focus={{
-                  shadow: "",
-                }}
+                _focus={{ shadow: "" }}
                 fontWeight="xl">
-                Login As a GUEST
+                Login As a Guest
               </Button>
+            </Box>
           </chakra.form>
         </GridItem>
       </SimpleGrid>
+    </Box>
   );
 };
 

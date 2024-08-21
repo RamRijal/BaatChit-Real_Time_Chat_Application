@@ -31,7 +31,7 @@ const Home = () => {
         </Box>
         <Box>
           <Tabs variant="soft-rounded" colorScheme="purple" isFitted>
-            <TabList px="5px">
+            <TabList px="10px">
               <Tab>Login</Tab>
               <Tab>Register</Tab>
             </TabList>
