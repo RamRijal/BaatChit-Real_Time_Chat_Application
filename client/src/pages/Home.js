@@ -6,7 +6,7 @@ import {
   TabPanel,
   TabPanels,
   Tabs,
-  Text
+  Text,
 } from "@chakra-ui/react";
 import React from "react";
 import Login from "../components/authentication/Login";
@@ -15,17 +15,18 @@ import Register from "../components/authentication/Register";
 const Home = () => {
   return (
     <Container maxW="xl" centerContent>
-      <Box shadow="md" justifyContent={"center"}>
+     
+      <Box my={"50px"} p={3} borderRadius={12} backgroundColor={"white"} shadow="md" w="100%" justifyContent={"center"}>
         <Box
           display="flex"
           justifyContent="center"
-          p={3}
           bg={"purple"}
+          p={4}
           w="100%"
           m="0 0 15px 0"
           borderRadius="lg"
           borderWidth="1px">
-          <Text color="white" fontSize="2xl" fontWeight="500">
+          <Text color="white" fontSize="3xl" fontWeight="500">
             BaatChit
           </Text>
         </Box>

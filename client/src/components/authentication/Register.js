@@ -7,19 +7,35 @@ import {
   FormLabel,
   GridItem,
   Input,
+  InputGroup,
+  InputRightElement,
+  Link,
   SimpleGrid,
   Stack,
+  Text,
   chakra,
 } from "@chakra-ui/react";
 
 const Register = () => {
+  const [show, setShow] = useState(false);
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [picture, setPicture] = useState();
+
+  const handleClick = () => {
+    setShow(!show);
+  };
+
+  const postDetails=()=>{
+    
+  }
+  const handleSubmit=()=>{
+
+  }
   return (
-    <Box mt={[10, 0]}>
+    <Box justifyContent="center" mt={[10, 0]}>
       <SimpleGrid
         display={{
           base: "initial",
@@ -31,10 +47,6 @@ const Register = () => {
         spacing={{
           md: 6,
         }}>
-        <GridItem
-          colSpan={{
-            md: 1,
-          }}></GridItem>
         <GridItem
           mt={[5, null, 0]}
           colSpan={{
@@ -56,126 +68,171 @@ const Register = () => {
               }}
               spacing={6}>
               <SimpleGrid columns={6} spacing={6}>
-                <FormControl as={GridItem} colSpan={[6, 3]}>
+                <FormControl
+                  id="first_name"
+                  isRequired
+                  as={GridItem}
+                  colSpan={[6, 6]}>
                   <FormLabel
                     htmlFor="first_name"
                     fontSize="sm"
-                    fontWeight="md"
-                    color="gray.700"
+                    fontWeight="semibold"
+                    color="gray.500"
                     _dark={{
                       color: "gray.50",
                     }}>
                     First name
                   </FormLabel>
                   <Input
-                  width="full"
+                    placeholder="Eg: John Doe"
+                    onChange={(e) => setName(e.target.value)}
+                    width="full"
                     type="text"
                     name="first_name"
                     id="first_name"
-                    autoComplete="given-name"
+                    autoComplete="first-name"
                     mt={1}
-                    focusBorderColor="brand.400"
+                    focusBorderColor="purple.600"
                     shadow="sm"
-                    size="sm"
+                    size="md"
                     w="full"
                     rounded="md"
                   />
                 </FormControl>
 
-                
-
-                <FormControl as={GridItem} colSpan={[6, 6]}>
+                <FormControl
+                  isRequired
+                  id="email_address"
+                  as={GridItem}
+                  colSpan={[6, 6]}>
                   <FormLabel
                     htmlFor="email_address"
                     fontSize="sm"
-                    fontWeight="md"
-                    color="gray.700"
+                    fontWeight="semibold"
+                    color="gray.500"
                     _dark={{
                       color: "gray.50",
                     }}>
                     Email address
                   </FormLabel>
                   <Input
-                    type="text"
+                    placeholder="Eg: abc@xyz.com"
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    type="email"
                     name="email_address"
                     id="email_address"
-                    autoComplete="email"
+                    autoComplete="email_address"
                     mt={1}
-                    focusBorderColor="brand.400"
+                    focusBorderColor="purple.600"
                     shadow="sm"
-                    size="sm"
+                    size="md"
                     w="full"
                     rounded="md"
                   />
                 </FormControl>
-                <FormControl as={GridItem} colSpan={[6, 6]}>
+
+                <FormControl
+                  id="password"
+                  isRequired
+                  as={GridItem}
+                  colSpan={[6, 6]}>
                   <FormLabel
-                    htmlFor="email_address"
+                    htmlFor="password"
                     fontSize="sm"
-                    fontWeight="md"
-                    color="gray.700"
+                    fontWeight="semibold"
+                    color="gray.500"
                     _dark={{
                       color: "gray.50",
                     }}>
                     Password{" "}
                   </FormLabel>
-                  <Input
-                    type="text"
-                    name="email_address"
-                    id="email_address"
-                    autoComplete="email"
-                    mt={1}
-                    focusBorderColor="brand.400"
-                    shadow="sm"
-                    size="sm"
-                    w="full"
-                    rounded="md"
-                  />
+                  <InputGroup>
+                    <Input
+                      placeholder={"Eg: password$123"}
+                      onChange={(e) => setPassword(e.target.value)}
+                      value={password}
+                      type={show ? "text" : "password"}
+                      name="password"
+                      id="password"
+                      autoComplete="new-password"
+                      mt={1}
+                      focusBorderColor="purple.600"
+                      shadow="sm"
+                      size="md"
+                      w="full"
+                      rounded="md"
+                    />
+                    <InputRightElement pt={2} width="4.5rem">
+                      <Button h="1.75rem" size="sm" onClick={handleClick}>
+                        {show ? "Hide":"Show"}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </FormControl>
-                <FormControl as={GridItem} colSpan={[6, 6]}>
+
+                <FormControl
+                  id="confirm_password"
+                  isRequired
+                  as={GridItem}
+                  colSpan={[6, 6]}>
                   <FormLabel
-                    htmlFor="email_address"
+                    htmlFor="confirm_password"
                     fontSize="sm"
-                    fontWeight="md"
-                    color="gray.700"
+                    fontWeight="semibold"
+                    color="gray.500"
                     _dark={{
                       color: "gray.50",
                     }}>
                     Confirm Password{" "}
                   </FormLabel>
-                  <Input
-                    type="text"
-                    name="email_address"
-                    id="email_address"
-                    autoComplete="email"
-                    mt={1}
-                    focusBorderColor="brand.400"
-                    shadow="sm"
-                    size="sm"
-                    w="full"
-                    rounded="md"
-                  />
+                  <InputGroup>
+                    <Input
+                      placeholder="Eg: password$123"
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      value={confirmPassword}
+                      type={show ? "text" : "password"}
+                      name="confirm_password"
+                      id="confirm_password"
+                      autoComplete="new-password"
+                      mt={1}
+                      focusBorderColor="purple.600"
+                      shadow="sm"
+                      size="md"
+                      w="full"
+                      rounded="md"
+                    />
+                    <InputRightElement pt={2} width="4.5rem">
+                      <Button h="1.75rem" size="sm" onClick={handleClick}>
+                        {show ? "Hide" : "Show"}
+                      </Button>
+                    </InputRightElement>
+                  </InputGroup>
                 </FormControl>
+
                 <FormControl as={GridItem} colSpan={[6, 6]}>
                   <FormLabel
                     htmlFor="picture"
                     fontSize="sm"
-                    fontWeight="md"
-                    color="gray.700"
+                    fontWeight="semibold"
+                    color="gray.500"
                     _dark={{
                       color: "gray.50",
                     }}>
-                      Upload your picture
+                    Upload your picture
                   </FormLabel>
                   <Input
+                  pt={1}
                     type="file"
                     name="picture"
                     id="picture"
                     autoComplete="picture"
+                    onChange={(e) => postDetails(e.target.files[0])}
+                    accept="image/*"
                     mt={1}
-                    focusBorderColor="brand.400"
+                    focusBorderColor="purple.600"
                     shadow="sm"
-                    size="sm"
+                    size="md"
                     w="full"
                     rounded="md"
                   />
@@ -188,27 +245,39 @@ const Register = () => {
                 sm: 6,
               }}
               py={3}
-              bg="gray.50"
+              bg="gray.1000"
               _dark={{
                 bg: "#121212",
               }}
               textAlign="center">
               <Button
-              w={"full"}
+              onClick={handleSubmit}
+                w={"full"}
                 type="submit"
                 backgroundColor={"purple"}
                 color={"white"}
+                _hover={{
+                  color: "purple",
+                  bgColor: "gray.100",
+                  fontWeight: "500",
+                }}
                 _focus={{
                   shadow: "",
                 }}
                 fontWeight="xl">
                 Register
               </Button>
+              <Text mt={3} fontWeight={400}>
+                Already have an account?{" "}
+                <Link color="red.600" href="/">
+                  Login
+                </Link>{" "}
+              </Text>{" "}
             </Box>
           </chakra.form>
         </GridItem>
       </SimpleGrid>
     </Box>
-  )
+  );
 };
 export default Register;
