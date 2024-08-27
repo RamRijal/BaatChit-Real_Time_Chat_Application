@@ -28,12 +28,12 @@ const Register = () => {
     setShow(!show);
   };
 
-  const postDetails=()=>{
-    
-  }
-  const handleSubmit=()=>{
-
-  }
+  const postDetails = () => {
+    // COde update
+  };
+  const handleSubmit = () => {
+    // COde update
+  };
   return (
     <Box justifyContent="center" mt={[10, 0]}>
       <SimpleGrid
@@ -165,7 +165,7 @@ const Register = () => {
                     />
                     <InputRightElement pt={2} width="4.5rem">
                       <Button h="1.75rem" size="sm" onClick={handleClick}>
-                        {show ? "Hide":"Show"}
+                        {show ? "Hide" : "Show"}
                       </Button>
                     </InputRightElement>
                   </InputGroup>
@@ -222,7 +222,7 @@ const Register = () => {
                     Upload your picture
                   </FormLabel>
                   <Input
-                  pt={1}
+                    pt={1}
                     type="file"
                     name="picture"
                     id="picture"
@@ -251,7 +251,7 @@ const Register = () => {
               }}
               textAlign="center">
               <Button
-              onClick={handleSubmit}
+                onClick={handleSubmit}
                 w={"full"}
                 type="submit"
                 backgroundColor={"purple"}
