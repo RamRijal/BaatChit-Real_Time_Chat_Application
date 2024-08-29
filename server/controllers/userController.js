@@ -41,3 +41,4 @@ const registerUser = async (req, res) => {
 };
 
 export default registerUser;
+// API not working at all for registering the new user in postman
