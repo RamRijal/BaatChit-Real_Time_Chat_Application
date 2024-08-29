@@ -15,6 +15,7 @@ import {
   Text,
   chakra,
 } from "@chakra-ui/react";
+import { object, string, number, date, InferType } from "yup";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -24,14 +25,22 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState();
   const [picture, setPicture] = useState();
 
+  // let FormSchema = object({
+  //   name: string().required("First Name is Required."),
+  //   email: string().email().required("Email is Required."),
+  //   password: string()
+  //     .password()
+  //     .required("Password is Required.")
+  //     .min(5, "Password must be minimum of 5 characters.")
+  //     .matches(/(?=.*[0-9])/, "Password must contain a number."),
+  //   createdOn: date().default(() => new Date()),
+  // });
   const handleClick = () => {
     setShow(!show);
   };
 
-  const postDetails = () => {
-  };
-  const handleSubmit = () => {
-  };
+  const postDetails = () => {};
+  const handleSubmit = () => {};
   return (
     <Box justifyContent="center" mt={[10, 0]}>
       <SimpleGrid
