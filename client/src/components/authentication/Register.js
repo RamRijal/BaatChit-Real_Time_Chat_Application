@@ -29,10 +29,8 @@ const Register = () => {
   };
 
   const postDetails = () => {
-    // COde update
   };
   const handleSubmit = () => {
-    // COde update
   };
   return (
     <Box justifyContent="center" mt={[10, 0]}>
