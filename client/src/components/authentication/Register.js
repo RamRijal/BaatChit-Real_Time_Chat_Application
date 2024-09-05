@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from "react";
+import { useToast } from "@chakra-ui/react";
 import {
   Box,
   Button,
@@ -16,6 +17,8 @@ import {
   chakra,
 } from "@chakra-ui/react";
 import { object, string, number, date, InferType } from "yup";
+import axios from "axios";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [show, setShow] = useState(false);
@@ -24,6 +27,9 @@ const Register = () => {
   const [password, setPassword] = useState();
   const [confirmPassword, setConfirmPassword] = useState();
   const [picture, setPicture] = useState();
+  const [loading, setLoading] = useState(false);
+  const toast = useToast();
+  const history = useNavigate();
 
   // let FormSchema = object({
   //   name: string().required("First Name is Required."),
@@ -35,12 +41,112 @@ const Register = () => {
   //     .matches(/(?=.*[0-9])/, "Password must contain a number."),
   //   createdOn: date().default(() => new Date()),
   // });
+
   const handleClick = () => {
     setShow(!show);
   };
 
-  const postDetails = () => {};
-  const handleSubmit = () => {};
+  const postDetails = (pics) => {
+    setLoading(true);
+    if (pics === undefined) {
+      toast({
+        title: "Please select an image.",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
+      return;
+    }
+    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+      const data = new FormData();
+      data.append("file", pics);
+      data.append("upload_preset", "BaatChit");
+      data.append("cloud_name", "djdobramq");
+      fetch("https://api.cloudinary.com/v1_1/djdobramq/image/upload", {
+        method: "POST",
+        body: data,
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setPicture(data.url.toString());
+          console.log(data.url.toString());
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+        });
+    } else {
+      toast({
+        title: "Please select an image.",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+  };
+  const handleSubmit = async () => {
+    setLoading(true);
+    if (!name || !email || !password || !confirmPassword) {
+      toast({
+        title: "Please fill all the fields",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+    if (password !== confirmPassword) {
+      toast({
+        title: "Password does not match",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+      return;
+    }
+    try {
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
+      const { data } = await axios.post(
+        "/api/user",
+        { name, email, password, picture },
+        config
+      );
+      toast({
+        title: "Registration Successful",
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
+      localStorage.setItem("userInfo", JSON.stringify(data));
+      setLoading(false);
+      history.push("/chats");
+    } catch (error) {
+      toast({
+        title: "Error Ocurred",
+        description: error.response.data.message,
+        status: "warning",
+        duration: 9000,
+        isClosable: true,
+        position: "bottom",
+      });
+      setLoading(false);
+    }
+    // THE PASSWORD IS NOT BEING HASHED IN THE DATABASE AND IS BEING SAVED AS IT IS  (as we give)
+  };
   return (
     <Box justifyContent="center" mt={[10, 0]}>
       <SimpleGrid
@@ -128,7 +234,7 @@ const Register = () => {
                     value={email}
                     type="email"
                     name="email_address"
-                    id="email_address"
+                    id="Email_address"
                     autoComplete="email_address"
                     mt={1}
                     focusBorderColor="purple.600"
@@ -161,7 +267,7 @@ const Register = () => {
                       value={password}
                       type={show ? "text" : "password"}
                       name="password"
-                      id="password"
+                      id="Password"
                       autoComplete="new-password"
                       mt={1}
                       focusBorderColor="purple.600"
@@ -258,6 +364,7 @@ const Register = () => {
               }}
               textAlign="center">
               <Button
+                isLoading={loading}
                 onClick={handleSubmit}
                 w={"full"}
                 type="submit"
