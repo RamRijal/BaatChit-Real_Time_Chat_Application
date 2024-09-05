@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.send("API IS RUNNING!");
 });
 
-app.use("api/user", userRoutes);
+app.use("/api/user", userRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, console.log(`Server created succesfully at ${PORT}`));
