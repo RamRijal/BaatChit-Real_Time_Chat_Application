@@ -145,7 +145,7 @@ const Register = () => {
       });
       setLoading(false);
     }
-    // THE PASSWORD IS NOT BEING HASHED IN THE DATABASE AND IS BEING SAVED AS IT IS  (as we give)
+    // The password is not being hashed in the database and is being saved in plain text, exactly as it is provided.
   };
   return (
     <Box justifyContent="center" mt={[10, 0]}>
